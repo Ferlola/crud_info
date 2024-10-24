@@ -1,0 +1,22 @@
+{% load static %}
+<style>
+    .container{
+        padding-left: 10px;
+    }
+</style>
+<div class="container">
+{% if request.user.is_authenticated %}
+<p>Hello {{ request.user }}</p>
+{% endif %}
+<p><a href="{%  url 'index' %}">Home</a></p>
+{% if request.user.is_authenticated %}
+<p><a href="{% url 'create'  %}">Create</a></p>
+<p><a href="{% url 'logout'  %}">Logout</a></p>
+{% else %}
+<p><a href="{% url 'register'  %}">Register</a></p>
+<p><a href="{% url 'login'  %}">Login</a></p>
+{% endif %}
+
+
+</div>
+

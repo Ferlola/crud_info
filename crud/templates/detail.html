@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="main">
+    <h3>Item: {{ crud_item.title }}</h3>
+    Create at: {{ crud_item.created_at }} <br /> <br />
+    {% if crud_item.updated_times > 1 %}
+    Update: {{ crud_item.updated_times|add:"-1" }} time{{ crud_item.updated_times|pluralize }}<br />
+    {% endif %}
+    
+    {% if crud_item.updated_times > 1 %}
+    Last update: {{ crud_item.updated_at }}<br />
+    <br />
+    {% endif %} 
+    
+    Description: {{ crud_item.description }}<br />
+    Location: {{ crud_item.location }}<br />
+    Machine: {{ crud_item.machine }}<br />
+    Network: {{ crud_item.network }}<br />
+    Ip protocol: {{ crud_item.ip }}<br />
+    Hostname: {{ crud_item.hostname }}<br />
+    Ip address: {{ crud_item.IPAddr }}<br />
+    Ip configuration: {{ crud_item.ipconf }}<br />
+    Ram memory: {{ crud_item.ram_memory }}<br />
+    Ram used %: {{ crud_item.ram_used }}<br />
+    {% if crud_item %}
+    {% if crud_item.updated_times > 1 %}
+    <p>Previous Updates: </p>
+    {% endif %}
+    {% for a,b,c,d,e,f,g,h,i,j,k in zipped %}
+    Update {{ forloop.revcounter0 }} times<br />
+
+    Date : {{ k }}<br><br />
+    Description: {{ a }}<br>
+    Location: {{ b }}<br>
+    Machine: {{ c }}<br>
+    Network: {{ d }}<br>
+    Ip protocol: {{ e }}<br>
+    Hostname: {{ f }}<br>
+    Ip adrress: {{ g }}<br>
+    Ip configuration: {{ h }}<br>
+    Ram memory: {{ i }}<br>
+    Ram used %: {{ j }}<br>
+    
+    <br>
+    {% endfor %}
+    {% endif %}
+  
+    <br>
+    <a href="{% url 'update' crud_item.id %}">Update</a>
+    <a href="{% url 'delete' crud_item.id %}">Delete</a>
+</div>
+{% endblock content %}

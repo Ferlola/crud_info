@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block content %}
+        <h2>CRUD + info</h2>
+        Items:
+        {% if crud_items %}
+        <ul>
+            {% for x in crud_items %}
+            <li>{{ x.title }}<br />Created at: {{ x.created_at }} </li><a href="{% url 'detail' x.id %}">details</a>
+            {% endfor %}
+        </ul>
+        {% else %}
+     
+        {% endif %}
+{% endblock content %}
